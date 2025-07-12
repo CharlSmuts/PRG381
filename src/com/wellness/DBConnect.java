@@ -1,4 +1,4 @@
-package lib;
+package com.wellness;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
