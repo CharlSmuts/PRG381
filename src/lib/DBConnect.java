@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 
 public class DBConnect {
 
-    public Connection conn(String dbName, String User, String pw)
+    public Connection conn()
     {
         Connection conn = null;
         try{
             Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=Users" + dbName, User, pw);
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Users?currentSchema=users","postgres","1234");
             if (conn != null)
             {
                 System.out.println("connected");

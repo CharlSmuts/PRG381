@@ -1,14 +1,14 @@
-import lib.DBConnect;
+
+
+import com.wellness.DBUtil;
 
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
     public static void main(String[] args) {
-        DBConnect db = new DBConnect();
-        db.conn("Users","postgres","1234");
+        DBUtil dbU = new DBUtil();
+        dbU.connectDB();
 
     }
 }
