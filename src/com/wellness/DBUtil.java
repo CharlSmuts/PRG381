@@ -31,11 +31,32 @@ public class DBUtil {
         rs.close();
         st.close();
         System.out.println("incorrect Password");
-    return false;
+        return false;
     }
 
-    public String getName(){
-        return "tempName tempSurname";
+    public String getName(String Student_Number){
+        DBConnect db = new DBConnect();
+        int StudentNrParsed = tryParseInt(Student_Number, 0);
+        String name = "", surname = "";
+
+        try{
+            PreparedStatement st = db.conn().prepareStatement(
+                    "SELECT \"name\", \"surname\" FROM users.userstable WHERE \"Student_Number\" = ?");
+            st.setInt(1, StudentNrParsed);
+
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    name = rs.getString("name");
+                    surname = rs.getString("surname");
+                }
+            }
+        }
+        catch (Exception e){
+            System.out.println("Error getting name: "+e.getMessage());
+        }
+
+
+        return name + " " + surname;
     }
 
 

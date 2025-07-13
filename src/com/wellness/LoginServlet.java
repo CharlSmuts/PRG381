@@ -14,15 +14,15 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String Student_Number = request.getParameter("studentNumber");
         String Password = request.getParameter("password");
-            DBUtil dbU = new DBUtil();
+        DBUtil dbU = new DBUtil();
 
-            boolean login = false;
-            try {
-                login = dbU.CheckPassword(Student_Number, Password);
-            }
-            catch (Exception e){
-                System.out.println("error logging in "+e);
-            }
+        boolean login = false;
+        try {
+            login = dbU.CheckPassword(Student_Number, Password);
+        }
+        catch (Exception e){
+            System.out.println("error logging in "+e);
+        }
         // session
 
         if (login)
@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 
             HttpSession session = request.getSession(true);
             session.setAttribute("studentNumber", Student_Number);
-            session.setAttribute("studentName", dbU.getName());
+            session.setAttribute("studentName", dbU.getName(Student_Number));
 
             response.sendRedirect("dashboard.jsp");
         }

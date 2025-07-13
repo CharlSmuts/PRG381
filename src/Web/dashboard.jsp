@@ -1,12 +1,12 @@
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <%@ page session="true" %>
 <%
-    HttpSession currentSession = request.getSession();
+    HttpSession currentSession = request.getSession(false); // Dont create a session if none exists
 
-    // Simulate login by creating temporary session attributes if missing
-    if (currentSession.getAttribute("studentName") == null) {
-        currentSession.setAttribute("studentName", "Test Student");
-        currentSession.setAttribute("studentNumber", "20251234");
+    // If the session is not valid, redirect
+    if (currentSession == null || currentSession.getAttribute("studentNumber") == null) {
+        response.sendRedirect("login.jsp");
+        return;
     }
 
     String studentName = (String) currentSession.getAttribute("studentName");

@@ -12,7 +12,8 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            DBUtil dbU = new DBUtil();
+
+        DBUtil dbU = new DBUtil();
         // Invalidate the session
         HttpSession session = request.getSession(!dbU.ValidAcc());
         if (session != null) {
