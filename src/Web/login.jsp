@@ -37,6 +37,18 @@
             color: red;
             text-align: center;
         }
+        p.register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        p.register-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        p.register-link a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -53,6 +65,8 @@
         
         <input type="submit" value="Login">
     </form>
+
+    <p class="register-link">Need an account? <a href="register.jsp">Register here</a></p>
 
     <% String error = request.getParameter("error");
        if (error != null) { %>

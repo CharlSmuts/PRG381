@@ -18,7 +18,9 @@ public class LoginServlet extends HttpServlet {
 
         boolean login = false;
         try {
-            login = dbU.CheckPassword(Student_Number, Password);
+            // the password must be hashed by the method in dbutil for it to align up with the db passwords
+            String hashedPassword = DBUtil.hashPassword(Password);
+            login = dbU.CheckPassword(Student_Number, hashedPassword);
         }
         catch (Exception e){
             System.out.println("error logging in "+e);
