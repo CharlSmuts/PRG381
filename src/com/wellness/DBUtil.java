@@ -21,18 +21,23 @@ public class DBUtil {
     public boolean CheckPassword(String SID, String Password) throws SQLException {
         DBConnect db = new DBConnect();
         int SIDParsed = tryParseInt(SID, 0);
-        PreparedStatement st = db.conn().prepareStatement("SELECT \"Password\" FROM users.userstable WHERE \"Student_Number\" = ?");
-        st.setInt(1, SIDParsed);
+        try {
+            PreparedStatement st = db.conn().prepareStatement("SELECT \"Password\" FROM users.userstable WHERE \"Student_Number\" = ?");
+            st.setInt(1, SIDParsed);
 
-        ResultSet rs = st.executeQuery();
-        while(rs.next()){
-            if (rs.getString(1).equals(Password)){
-                System.out.println("Correct Password");
-                return true;
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                if (rs.getString(1).equals(Password)){
+                    System.out.println("Correct Password");
+                    return true;
+                }
             }
+            rs.close();
+            st.close();
+        } catch (Exception e){
+            System.out.println("Error getting name: "+e.getMessage());
         }
-        rs.close();
-        st.close();
+
         System.out.println("incorrect Password");
         return false;
     }
