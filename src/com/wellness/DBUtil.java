@@ -44,7 +44,7 @@ public class DBUtil {
 
         try{
             PreparedStatement st = db.conn().prepareStatement(
-                    "SELECT \"name\", \"surname\" FROM users.userstable WHERE \"Student_Number\" = ?");
+                    "SELECT \"Name\", \"Surname\" FROM users.userstable WHERE \"Student_Number\" = ?");
             st.setInt(1, StudentNrParsed);
 
             try (ResultSet rs = st.executeQuery()) {
